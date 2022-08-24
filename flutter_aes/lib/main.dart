@@ -37,19 +37,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
- //     bottomAppBarTheme: const BottomAppBarTheme(shape: CircularNotchedRectangle()),
-      //     cardTheme: CardTheme(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-       
-      
-      //     textSelectionTheme: const TextSelectionThemeData(
-      //         selectionColor: Colors.red, cursorColor: Colors.green, selectionHandleColor: Colors.black),
-      //     inputDecorationTheme: const InputDecorationTheme(
-      //         filled: true,
-      //         fillColor: Colors.white,
-      //         iconColor: Colors.red,
-      //         labelStyle: TextStyle(color: Colors.lime),
-      //         border: OutlineInputBorder(),
-      //         floatingLabelStyle: TextStyle(color: Colors.red, fontSize: 24, fontWeight: FontWeight.w600)),
-      //     textTheme: const TextTheme(subtitle1: TextStyle(color: Colors.red)),
