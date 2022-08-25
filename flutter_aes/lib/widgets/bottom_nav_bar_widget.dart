@@ -142,7 +142,7 @@ class _BottomNavigationBarWidState extends State<BottomNavigationBarWid> {
       builder: (context) => Padding(
         padding: MediaQuery.of(context).viewInsets,
         child: Container(
-          padding: const EdgeInsets.all(15.0),
+          padding: PaddingWidget.allPadding,
           child: Form(
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
@@ -234,7 +234,7 @@ class _BottomNavigationBarWidState extends State<BottomNavigationBarWid> {
       String password, String type, String email, BuildContext context) {
     return ElevatedButton(
         style: ButtonStyle(
-            padding: MaterialStateProperty.all(bottomNavPadding),
+            padding: MaterialStateProperty.all(PaddingWidget.bottomNavPadding),
             backgroundColor: MaterialStateProperty.all(
               primary,
             )),
