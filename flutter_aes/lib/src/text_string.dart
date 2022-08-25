@@ -1,51 +1,45 @@
-//Encrypt Service Page
-const String keyUtf8 = 'WlFsdCYyJPPmKAVeA9ir+A==';
-const String copyMessage = 'Kopyalandı';
+// ignore_for_file: must_be_immutable, prefer_const_constructors_in_immutables
 
-//Password Generator
-const String generateTitle = 'Parola Üretme ';
-const String labelText = 'Parola';
-const String randPassGen = 'Rastgele Parola Oluştur';
-const String compiedPassText = 'Parola Tamamlandı';
-const String lettersLowercaseText = 'abcdefghijklmnopqrstuvwqyz';
-const String lettersUppercaseText = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const String numberText = '0123456789';
-const String specialCaracter = '¬!£%^&*()_-+=[]{};:@#~|<>,.?/';
-const String checkStr = 'Lütfen En Az Birini Kontrol Edin';
-const String lenghtText = 'Parola Uzunluğu';
+import 'package:flutter/cupertino.dart';
 
-//Home Page
-const String appBarTitle = 'Parolalarınız';
-const String appBarIconTitle = 'Tüm Parolalar';
-const String noPassText = 'Parola Kaydedilmemiş';
-const String serviceText = 'Servis';
-const String enterValueText = 'Bir Değer Giriniz';
-const String usernameText = 'Kullanıcı Adı';
+class TextWidget extends Text {
+  static String keyUtf8 = 'WlFsdCYyJPPmKAVeA9ir+A==';
+  static String copyMessage = 'Kopyalandı';
+  static String generateTitle = 'Parola Üretme ';
+  static String labelText = 'Parola';
+  static String randPassGen = 'Rastgele Parola Oluştur';
+  static String compiedPassText = 'Parola Tamamlandı';
+  static String lettersLowercaseText = 'abcdefghijklmnopqrstuvwqyz';
+  static String lettersUppercaseText = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  static String numberText = '0123456789';
+  static String specialCaracter = '¬!£%^&*()_-+=[]{};:@#~|<>,.?/';
+  static String checkStr = 'Lütfen En Az Birini Kontrol Edin';
+  static String lenghtText = 'Parola Uzunluğu';
+  static String appBarTitle = 'Parolalarınız';
+  static String appBarIconTitle = 'Tüm Parolalar';
+  static String noPassText = 'Parola Kaydedilmemiş';
+  static String serviceText = 'Servis';
+  static String enterValueText = 'Bir Değer Giriniz';
+  static String usernameText = 'Kullanıcı Adı';
+  static String googleText = 'Google';
+  static String facebookText = 'Facebook';
+  static String instagramTekxt = 'Instagram';
+  static String snapchatText = 'Snapchat';
+  static String twitterTekxt = 'Twitter';
+  static String dcText = 'Discord';
+  static String pleaseAuth = 'Lütfen Parolanızı Giriniz';
+  static String saveText = 'Kaydet';
+  static String deleteText = 'Sil';
+  static String copyText = 'Kopyala';
+  static String upperText = 'Lütfen servis adının ilk harfini büyük yazınız!';
+  static String serviceTextUpper = 'SERVİS';
+  static String passTextUpper = 'PAROLA';
+  static String usernameTextUpper = 'KULLANICI ADI';
+  static String loginText = 'GİRİŞ';
+  static String registerText = 'KAYIT';
+  static String welcomeText = 'MERHABA';
+  static String pinText = 'KAYIT';
+  static String isDelete = 'Silinsin mi?';
 
-//Servis Adları
-const String googleText = 'Google';
-const String facebookText = 'Facebook';
-const String instagramTekxt = 'Instagram';
-const String snapchatText = 'Snapchat';
-const String twitterTekxt = 'Twitter';
-const String dcText = 'Discord';
-
-const String pleaseAuth = 'Lütfen Parolanızı Giriniz';
-
-const String saveText = 'Kaydet';
-const String deleteText = 'Sil';
-const String copyText = 'Kopyala';
-
-const String upperText = 'Lütfen servis adının ilk harfini büyük yazınız!';
-
-const String serviceTextUpper = 'SERVİS';
-const String passTextUpper = 'PAROLA';
-const String usernameTextUpper = 'KULLANICI ADI';
-
-const String loginText = 'GİRİŞ';
-const String registerText = 'KAYIT';
-
-const String welcomeText = 'MERHABA';
-const String pinText = 'KAYIT';
-
-const String isDelete = 'Silinsin mi?';
+  TextWidget(super.data, {Key? key}) : super(key: key);
+}

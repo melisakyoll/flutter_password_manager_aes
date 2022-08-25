@@ -99,11 +99,11 @@ class _AuthPageState extends State<AuthPage> {
           height: 30,
         ),
         Text(
-          welcomeText,
+          TextWidget.welcomeText,
           style: welcomeTextStyle,
         ),
         const SizedBox(height: 5),
-        Text(pinText, style: pinTextStyle),
+        Text(TextWidget.pinText, style: pinTextStyle),
         const SizedBox(height: 50),
         Text(
           "   YENİ PİN",

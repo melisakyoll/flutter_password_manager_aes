@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -23,7 +23,7 @@ class _RandomPasswordGeneratorState extends State<RandomPasswordGenerator> {
   int maxPasswordLength = 50;
   List<bool> isChecked = [true, true, true, true];
 
-  String copy = copyText;
+  String copy = TextWidget.copyText;
   Color color = blackColor;
 
   delay() async {
@@ -35,13 +35,13 @@ class _RandomPasswordGeneratorState extends State<RandomPasswordGenerator> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: iconColor,
-        title: const Text(generateTitle),
+        title: Text(TextWidget.generateTitle),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Padding(
-              padding: randomHorizonVertical,
+              padding: PaddingWidget.randomHorizonVertical,
               child: TextFormField(
                 maxLines: null,
                 decoration: const InputDecoration(
@@ -62,8 +62,8 @@ class _RandomPasswordGeneratorState extends State<RandomPasswordGenerator> {
                 TextSpan(
                   text: '',
                   children: <TextSpan>[
-                    const TextSpan(
-                        text: lenghtText,
+                    TextSpan(
+                        text: TextWidget.lenghtText,
                         style: TextStyle(fontStyle: FontStyle.italic)),
                     TextSpan(
                         text: ' ($passwordLength Karakter)',
@@ -77,7 +77,7 @@ class _RandomPasswordGeneratorState extends State<RandomPasswordGenerator> {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 50.0),
+        padding: PaddingWidget.bottomOnlyPadding,
         child: SizedBox(
           height: 90,
           child: Row(
@@ -108,8 +108,8 @@ class _RandomPasswordGeneratorState extends State<RandomPasswordGenerator> {
   }
 
   Text lenghtPassText() {
-    return const Text(
-      randPassGen,
+    return Text(
+      TextWidget.randPassGen,
       style: TextStyle(color: whiteColor),
     );
   }
@@ -148,7 +148,7 @@ class _RandomPasswordGeneratorState extends State<RandomPasswordGenerator> {
               Clipboard.setData(data);
             });
             Fluttertoast.showToast(
-              msg: copyMessage, // message
+              msg: TextWidget.copyMessage, // message
               toastLength: Toast.LENGTH_SHORT, // length
               gravity: ToastGravity.CENTER, // location
               backgroundColor: greyColor,
@@ -232,9 +232,9 @@ class _RandomPasswordGeneratorState extends State<RandomPasswordGenerator> {
   Column passwordSettingList(StateSetter setState) {
     return Column(
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 8.0),
-          child: Text(' Parola Ayarlamaları',
+        Padding(
+          padding: PaddingWidget.onlyVertical,
+          child: const Text(' Parola Ayarlamaları',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0)),
         ),
         ListTile(

@@ -28,7 +28,7 @@ class _DetailsPageState extends State<DetailsPage> {
     return Scaffold(
       backgroundColor: whiteColor,
       appBar: AppBar(
-        title: const Text(labelText),
+        title: Text(TextWidget.labelText),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
@@ -66,10 +66,12 @@ class _DetailsPageState extends State<DetailsPage> {
     return Wrap(
       children: <Widget>[
         Padding(
-          padding: horzonVertical,
+          padding: PaddingWidget.horzonVertical,
           child: Container(
             width: double.infinity,
-            padding: const EdgeInsets.only(bottom: 20),
+            padding: const EdgeInsets.only(
+                bottom:
+                    20), /////////////////////////////////////////////////////////////////
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
               color: whiteColor,
@@ -95,12 +97,12 @@ class _DetailsPageState extends State<DetailsPage> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         //TITLE
-        titlePadding(serviceTextUpper),
+        titlePadding(TextWidget.serviceTextUpper),
         subTitleRow(data, "${data['type']}"),
-        titlePadding(usernameTextUpper),
+        titlePadding(TextWidget.usernameTextUpper),
         subTitleRow(data, "${data['email']}"),
         //PASSWORD
-        titlePadding(passTextUpper),
+        titlePadding(TextWidget.passTextUpper),
         passwordCopy(data, context),
       ],
     );
@@ -133,7 +135,7 @@ class _DetailsPageState extends State<DetailsPage> {
           ),
         ),
         IconButton(
-          tooltip: copyMessage,
+          tooltip: TextWidget.copyMessage,
           onPressed: () {
             _encryptService.copyToClipboard(
               data['password'],
@@ -165,7 +167,7 @@ class _DetailsPageState extends State<DetailsPage> {
 
   Padding titlePadding(String text) {
     return Padding(
-      padding: const EdgeInsets.only(top: 30, left: 50),
+      padding: PaddingWidget.paddingTitle,
       child: Text(
         text,
         style: cTextStyle,
