@@ -1,7 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api, library_prefixes, prefer_const_constructors, use_build_context_synchronously, unused_import
 
 import 'package:flutter/material.dart';
-import 'package:flutter_aes/constant/color_constant.dart';
+import 'package:flutter_aes/core/constant/color_constant.dart';
 import 'package:flutter_aes/core/padding.dart';
 import 'package:flutter_aes/pages/details_page.dart';
 import 'package:flutter_aes/services/encyrpt_service.dart';

@@ -4,7 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_aes/constant/color_constant.dart';
+import 'package:flutter_aes/core/constant/color_constant.dart';
 import 'package:flutter_aes/src/text_string.dart';
 import 'package:flutter_aes/style/text_style.dart';
 import 'package:flutter_aes/widgets/bottom_nav_bar_widget.dart';

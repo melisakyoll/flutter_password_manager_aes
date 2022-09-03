@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:flutter_aes/constant/color_constant.dart';
+import 'package:flutter_aes/core/constant/color_constant.dart';
 import 'package:flutter_aes/src/text_string.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 

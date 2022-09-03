@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_aes/constant/color_constant.dart';
+import 'package:flutter_aes/core/constant/color_constant.dart';
 import 'package:flutter_aes/core/padding.dart';
 import 'package:flutter_aes/pages/home_page.dart';
 import 'package:flutter_aes/pages/random_password_generate.dart';
