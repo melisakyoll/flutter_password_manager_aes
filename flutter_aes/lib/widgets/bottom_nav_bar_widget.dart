@@ -134,9 +134,9 @@ class _BottomNavigationBarWidState extends State<BottomNavigationBarWid> {
   }
 
   void insertHiveDB() {
-    late String type;
-    late String email;
-    late String password;
+    String? type;
+    String? email;
+    String? password;
 
     showModalBottomSheet(
       isScrollControlled: true,
@@ -221,7 +221,7 @@ class _BottomNavigationBarWidState extends State<BottomNavigationBarWid> {
                     },
                   ),
                   const SizedBox(height: 15.0),
-                  elevatedButtonWidget(password, type, email, context)
+                  elevatedButtonWidget(password!, type!, email!, context)
                 ],
               ),
             ),
