@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_aes/constant/color_constant.dart';
 import 'package:flutter_aes/core/padding.dart';
@@ -86,7 +88,7 @@ class _BottomNavigationBarWidState extends State<BottomNavigationBarWid> {
             children: [
               Icon(Icons.home,
                   size: 28, color: currentTab == 1 ? whiteColor : greyColor),
-              Text(appBarTitle,
+              Text(TextWidget.appBarTitle,
                   style: TextStyle(
                       color: currentTab == 1 ? whiteColor : greyColor)),
             ],
@@ -112,7 +114,7 @@ class _BottomNavigationBarWidState extends State<BottomNavigationBarWid> {
             children: [
               Icon(Icons.password,
                   size: 28, color: currentTab == 0 ? whiteColor : greyColor),
-              Text(generateTitle,
+              Text(TextWidget.generateTitle,
                   style: TextStyle(
                       color: currentTab == 0 ? whiteColor : greyColor)),
             ],
@@ -149,8 +151,8 @@ class _BottomNavigationBarWidState extends State<BottomNavigationBarWid> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Text(
-                    upperText,
+                  Text(
+                    TextWidget.upperText,
                     style: TextStyle(fontSize: 16),
                   ),
                   const SizedBox(
@@ -159,17 +161,16 @@ class _BottomNavigationBarWidState extends State<BottomNavigationBarWid> {
                   TextFormField(
                     controller: servicecontroller,
                     textCapitalization: TextCapitalization.sentences,
-                    // ignore: prefer_const_constructors
                     decoration: InputDecoration(
                         icon: const Icon(FontAwesomeIcons.google),
                         border: const OutlineInputBorder(),
-                        labelText: serviceText,
-                        hintText: googleText),
+                        labelText: TextWidget.serviceText,
+                        hintText: TextWidget.googleText),
                     style: bottomNavStyle,
                     onChanged: (value) => type = value,
                     validator: (val) {
                       if (val!.trim().isEmpty) {
-                        return enterValueText;
+                        return TextWidget.enterValueText;
                       } else {
                         return null;
                       }
@@ -179,19 +180,19 @@ class _BottomNavigationBarWidState extends State<BottomNavigationBarWid> {
                   TextFormField(
                     controller: emailcontroller,
                     textCapitalization: TextCapitalization.sentences,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       icon: Icon(
                         Icons.person,
                         size: 26,
                       ),
                       border: OutlineInputBorder(),
-                      labelText: usernameText,
+                      labelText: TextWidget.usernameText,
                     ),
                     style: bottomNavStyle,
                     onChanged: (value) => email = value,
                     validator: (val) {
                       if (val!.trim().isEmpty) {
-                        return enterValueText;
+                        return TextWidget.enterValueText;
                       } else {
                         return null;
                       }
@@ -202,18 +203,18 @@ class _BottomNavigationBarWidState extends State<BottomNavigationBarWid> {
                     controller: passwordcontroller,
                     textCapitalization: TextCapitalization.sentences,
                     obscureText: true,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       icon: Icon(
                         Icons.password,
                       ),
                       border: OutlineInputBorder(),
-                      labelText: labelText,
+                      labelText: TextWidget.labelText,
                     ),
                     style: bottomNavStyle,
                     onChanged: (value) => password = value,
                     validator: (val) {
                       if (val!.trim().isEmpty) {
-                        return enterValueText;
+                        return TextWidget.enterValueText;
                       } else {
                         return null;
                       }
@@ -238,7 +239,7 @@ class _BottomNavigationBarWidState extends State<BottomNavigationBarWid> {
             backgroundColor: MaterialStateProperty.all(
               primary,
             )),
-        child: Text(saveText, style: bottomNavStyle),
+        child: Text(TextWidget.saveText, style: bottomNavStyle),
         onPressed: () {
           // Encrypt
           password = _encryptService.encrypt(password);

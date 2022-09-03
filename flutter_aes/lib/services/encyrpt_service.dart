@@ -12,10 +12,10 @@ class EncryptService {
   final iv = ENCRYPT.IV.fromLength(16);
 
   final encrypter =
-      ENCRYPT.Encrypter(ENCRYPT.AES(ENCRYPT.Key.fromUtf8(keyUtf8)));
+      ENCRYPT.Encrypter(ENCRYPT.AES(ENCRYPT.Key.fromUtf8(TextWidget.keyUtf8)));
 
   String encrypt(String password) {
-    final key = ENCRYPT.Key.fromUtf8(keyUtf8);
+    final key = ENCRYPT.Key.fromUtf8(TextWidget.keyUtf8);
     final iv = ENCRYPT.IV.fromLength(16);
 
     final encrypter = ENCRYPT.Encrypter(ENCRYPT.AES(key));
@@ -30,10 +30,12 @@ class EncryptService {
         .decrypt(ENCRYPT.Encrypted.fromBase64(decryptedPassword), iv: iv);
 
     // copy to clipboard
-    Clipboard.setData(ClipboardData(text: decrypted));
+    Clipboard.setData(ClipboardData(
+        text:
+            decrypted)); ////////////////////////////////////////////////////////////////////////////
 
     Fluttertoast.showToast(
-        msg: copyMessage,
+        msg: TextWidget.copyMessage,
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 2,

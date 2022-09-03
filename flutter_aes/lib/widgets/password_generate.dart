@@ -6,10 +6,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 String generateRandomPassword(int passLength, bool isUpperCase,
     bool isLowerCase, bool isNumbers, bool isSymbols) {
-  const letterLowerCase = lettersLowercaseText;
-  const letterUpperCase = lettersUppercaseText;
-  const numbers = numberText;
-  const symbols = specialCaracter;
+  var letterLowerCase = TextWidget.lettersLowercaseText;
+  var letterUpperCase = TextWidget.lettersUppercaseText;
+  var numbers = TextWidget.numberText;
+  var symbols = TextWidget.specialCaracter;
   String password = '';
 
   if (isUpperCase || isLowerCase || isNumbers || isSymbols) {
@@ -54,7 +54,7 @@ String generateRandomPassword(int passLength, bool isUpperCase,
     }).join('');
   }
   Fluttertoast.showToast(
-    msg: checkStr, // message
+    msg: TextWidget.checkStr, // message
     toastLength: Toast.LENGTH_SHORT, // length
     gravity: ToastGravity.CENTER, // location
     backgroundColor: greyColor,
