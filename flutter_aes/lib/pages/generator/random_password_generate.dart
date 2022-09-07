@@ -190,7 +190,6 @@ class _RandomPasswordGeneratorState extends State<RandomPasswordGenerator> {
 
   IconButton _repeatIconButton() {
     return IconButton(
-      iconSize: 60,
       splashColor: primary,
       splashRadius: 35.0,
       icon: Icon(Icons.refresh, color: color),
