@@ -38,43 +38,7 @@ class _RandomPasswordGeneratorState extends State<RandomPasswordGenerator> {
         title: Text(TextWidget.generateTitle),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: PaddingWidget.randomHorizonVertical,
-              child: TextFormField(
-                maxLines: null,
-                decoration: const InputDecoration(
-                  isDense: true,
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: blackColor,
-                        width: 5.0,
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(15.0))),
-                ),
-                controller: passwordController,
-              ),
-            ),
-            generateButton(),
-            ListTile(
-              title: Text.rich(
-                TextSpan(
-                  text: '',
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: TextWidget.lenghtText,
-                        style: TextStyle(fontStyle: FontStyle.italic)),
-                    TextSpan(
-                        text: ' ($passwordLength Karakter)',
-                        style: const TextStyle(fontWeight: FontWeight.bold)),
-                  ],
-                ),
-              ),
-            ),
-            lenghtSlider(),
-          ],
-        ),
+        child: _contextColumn(),
       ),
       bottomNavigationBar: Padding(
         padding: PaddingWidget.bottomOnlyPadding,
@@ -89,6 +53,54 @@ class _RandomPasswordGeneratorState extends State<RandomPasswordGenerator> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Column _contextColumn() {
+    return Column(
+      children: [
+        _paddingAndText(),
+        generateButton(),
+        _listTile(),
+        lenghtSlider(),
+      ],
+    );
+  }
+
+  ListTile _listTile() {
+    return ListTile(
+      title: Text.rich(
+        TextSpan(
+          text: '',
+          children: <TextSpan>[
+            TextSpan(
+                text: TextWidget.lenghtText,
+                style: TextStyle(fontStyle: FontStyle.italic)),
+            TextSpan(
+                text: ' ($passwordLength Karakter)',
+                style: const TextStyle(fontWeight: FontWeight.bold)),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Padding _paddingAndText() {
+    return Padding(
+      padding: PaddingWidget.randomHorizonVertical,
+      child: TextFormField(
+        maxLines: null,
+        decoration: const InputDecoration(
+          isDense: true,
+          border: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: blackColor,
+                width: 5.0,
+              ),
+              borderRadius: BorderRadius.all(Radius.circular(15.0))),
+        ),
+        controller: passwordController,
       ),
     );
   }
@@ -137,26 +149,30 @@ class _RandomPasswordGeneratorState extends State<RandomPasswordGenerator> {
         color: secondary,
         borderRadius: BorderRadius.circular(30.0),
       ),
-      child: IconButton(
-        splashColor: primary,
-        splashRadius: 35.0,
-        icon: Icon(Icons.copy, color: color),
-        onPressed: () {
-          if (passwordController.text.isNotEmpty) {
-            setState(() {
-              final data = ClipboardData(text: passwordController.text);
-              Clipboard.setData(data);
-            });
-            Fluttertoast.showToast(
-              msg: TextWidget.copyMessage, // message
-              toastLength: Toast.LENGTH_SHORT, // length
-              gravity: ToastGravity.CENTER, // location
-              backgroundColor: greyColor,
-              timeInSecForIosWeb: 1,
-            );
-          }
-        },
-      ),
+      child: _iconButton(),
+    );
+  }
+
+  IconButton _iconButton() {
+    return IconButton(
+      splashColor: primary,
+      splashRadius: 35.0,
+      icon: Icon(Icons.copy, color: color),
+      onPressed: () {
+        if (passwordController.text.isNotEmpty) {
+          setState(() {
+            final data = ClipboardData(text: passwordController.text);
+            Clipboard.setData(data);
+          });
+          Fluttertoast.showToast(
+            msg: TextWidget.copyMessage, // message
+            toastLength: Toast.LENGTH_SHORT, // length
+            gravity: ToastGravity.CENTER, // location
+            backgroundColor: greyColor,
+            timeInSecForIosWeb: 1,
+          );
+        }
+      },
     );
   }
 
@@ -168,23 +184,28 @@ class _RandomPasswordGeneratorState extends State<RandomPasswordGenerator> {
         color: secondary,
         borderRadius: BorderRadius.circular(30.0),
       ),
-      child: IconButton(
-        splashColor: primary,
-        splashRadius: 35.0,
-        icon: Icon(Icons.refresh, color: color),
-        onPressed: () {
-          setState(() {
-            passwordController.clear();
-            Fluttertoast.showToast(
-              msg: 'Yenile', // message
-              toastLength: Toast.LENGTH_SHORT, // length
-              gravity: ToastGravity.CENTER, // location
-              backgroundColor: greyColor,
-              timeInSecForIosWeb: 1,
-            );
-          });
-        },
-      ),
+      child: _repeatIconButton(),
+    );
+  }
+
+  IconButton _repeatIconButton() {
+    return IconButton(
+      iconSize: 60,
+      splashColor: primary,
+      splashRadius: 35.0,
+      icon: Icon(Icons.refresh, color: color),
+      onPressed: () {
+        setState(() {
+          passwordController.clear();
+          Fluttertoast.showToast(
+            msg: 'Yenile', // message
+            toastLength: Toast.LENGTH_SHORT, // length
+            gravity: ToastGravity.CENTER, // location
+            backgroundColor: greyColor,
+            timeInSecForIosWeb: 1,
+          );
+        });
+      },
     );
   }
 
@@ -234,62 +255,79 @@ class _RandomPasswordGeneratorState extends State<RandomPasswordGenerator> {
       children: [
         Padding(
           padding: PaddingWidget.onlyVertical,
-          child: const Text(' Parola Ayarlamaları',
+          child: Text(TextWidget.passwordSettings,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0)),
         ),
-        ListTile(
-          leading: Checkbox(
-            value: isChecked[0],
-            activeColor: primary,
-            onChanged: (value) {
-              setState(() {
-                isChecked[0] = value!;
-              });
-            },
-          ),
-          title: const Text('Büyük Harf (A-Z)'),
-          dense: true,
-        ),
-        ListTile(
-          leading: Checkbox(
-            value: isChecked[1],
-            activeColor: primary,
-            onChanged: (value) {
-              setState(() {
-                isChecked[1] = value!;
-              });
-            },
-          ),
-          title: const Text('Küçük Harf (a-z)'),
-          dense: true,
-        ),
-        ListTile(
-          leading: Checkbox(
-            value: isChecked[2],
-            activeColor: primary,
-            onChanged: (value) {
-              setState(() {
-                isChecked[2] = value!;
-              });
-            },
-          ),
-          title: const Text('Sayı (0-9)'),
-          dense: true,
-        ),
-        ListTile(
-          leading: Checkbox(
-            value: isChecked[3],
-            activeColor: primary,
-            onChanged: (value) {
-              setState(() {
-                isChecked[3] = value!;
-              });
-            },
-          ),
-          title: const Text('Sembol (!#£.)'),
-          dense: true,
-        ),
+        _upperTextListTile(setState),
+        _letterTextListTile(setState),
+        _numberlistTile(setState),
+        _symbolListTile(setState),
       ],
+    );
+  }
+
+  ListTile _symbolListTile(StateSetter setState) {
+    return ListTile(
+      leading: Checkbox(
+        value: isChecked[3],
+        activeColor: primary,
+        onChanged: (value) {
+          setState(() {
+            isChecked[3] = value!;
+          });
+        },
+      ),
+      title: const Text('Sembol (!#£.)'),
+      dense: true,
+    );
+  }
+
+  ListTile _numberlistTile(StateSetter setState) {
+    return ListTile(
+      leading: Checkbox(
+        value: isChecked[2],
+        activeColor: primary,
+        onChanged: (value) {
+          setState(() {
+            isChecked[2] = value!;
+          });
+        },
+      ),
+      title: const Text('Sayı (0-9)'),
+      dense: true,
+    );
+  }
+
+  ListTile _letterTextListTile(StateSetter setState) {
+    return ListTile(
+      leading: Checkbox(
+        value: isChecked[1],
+        activeColor: primary,
+        onChanged: (value) {
+          setState(() {
+            isChecked[1] = value!;
+          });
+        },
+      ),
+      title: const Text('Küçük Harf (a-z)'),
+      dense: true,
+    );
+  }
+
+  ListTile _upperTextListTile(StateSetter setState) {
+    return ListTile(
+      /////////Widget
+      leading: Checkbox(
+        value: isChecked[0],
+        activeColor: primary,
+        onChanged: (value) {
+          setState(() {
+            isChecked[0] = value!;
+          });
+        },
+      ),
+      title: const Text('Büyük Harf (A-Z)'),
+      dense: true,
     );
   }
 }

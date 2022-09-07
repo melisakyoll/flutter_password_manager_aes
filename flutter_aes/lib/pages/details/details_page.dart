@@ -1,4 +1,4 @@
-// ignore_for_file: library_prefixes
+// ignore_for_file: library_prefixes, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:flutter_aes/core/constant/color_constant.dart';
@@ -18,7 +18,7 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
-  final Box box = Hive.box("password");
+  final Box box = Hive.box("password"); ///////////////////// Hive manager
 
   final EncryptService _encryptService = EncryptService();
   @override
@@ -50,12 +50,10 @@ class _DetailsPageState extends State<DetailsPage> {
         data = box.getAt(index);
         return Column(
           children: <Widget>[
-            const SizedBox(height: 50),
+            const SizedBox(height: 50), //////////////////////
             serviceIcons(data),
-            const SizedBox(height: 20),
-            //Wrap
+            const SizedBox(height: 20), /////////////////////
             wrapContext(data, context),
-            // const SizedBox(height: 20),
           ],
         );
       },
@@ -70,6 +68,7 @@ class _DetailsPageState extends State<DetailsPage> {
           child: Container(
             width: double.infinity,
             padding: const EdgeInsets.only(
+                ////////////////////////////////////////////
                 bottom:
                     20), /////////////////////////////////////////////////////////////////
             decoration: BoxDecoration(
@@ -77,7 +76,7 @@ class _DetailsPageState extends State<DetailsPage> {
               color: whiteColor,
               // ignore: prefer_const_literals_to_create_immutables
               boxShadow: [
-                const BoxShadow(
+                BoxShadow(
                   color: greyColor,
                   blurRadius: 12,
                   offset: Offset(0, 2),
@@ -97,12 +96,15 @@ class _DetailsPageState extends State<DetailsPage> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         //TITLE
-        titlePadding(TextWidget.serviceTextUpper),
+        titlePadding(
+            TextWidget.serviceTextUpper), ////////////////////////////////////
         subTitleRow(data, "${data['type']}"),
-        titlePadding(TextWidget.usernameTextUpper),
+        titlePadding(
+            TextWidget.usernameTextUpper), ////////////////////////////////////
         subTitleRow(data, "${data['email']}"),
         //PASSWORD
-        titlePadding(TextWidget.passTextUpper),
+        titlePadding(
+            TextWidget.passTextUpper), ////////////////////////////////////////
         passwordCopy(data, context),
       ],
     );
@@ -113,7 +115,8 @@ class _DetailsPageState extends State<DetailsPage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Container(
-          margin: const EdgeInsets.only(left: 50),
+          margin: const EdgeInsets.only(
+              left: 50), //////////////////////////////////
           child: Text(
             text,
             style: passTextStyle,
@@ -130,25 +133,31 @@ class _DetailsPageState extends State<DetailsPage> {
         Container(
           margin: const EdgeInsets.only(left: 50),
           child: Text(
-            "${data['password']}",
+            "${data['password']}", //////////////////////////////////////////
             style: passTextStyle,
           ),
         ),
-        IconButton(
-          tooltip: TextWidget.copyMessage,
-          onPressed: () {
-            _encryptService.copyToClipboard(
-              data['password'],
-              context,
-            );
-          },
-          icon: Icon(
-            Icons.content_copy,
-            color: Colors.grey[700],
-            size: 20.0,
-          ),
-        ),
+        passwordIconCopy(data, context),
       ],
+    );
+  }
+
+  IconButton passwordIconCopy(
+      Map<dynamic, dynamic> data, BuildContext context) {
+    return IconButton(
+      tooltip: TextWidget.copyMessage,
+      onPressed: () {
+        _encryptService.copyToClipboard(
+          ////////////////////////////////////////////
+          data['password'],
+          context,
+        );
+      },
+      icon: Icon(
+        Icons.content_copy,
+        color: Colors.grey[700],
+        size: 20.0,
+      ),
     );
   }
 
@@ -166,6 +175,7 @@ class _DetailsPageState extends State<DetailsPage> {
   }
 
   Padding titlePadding(String text) {
+    ////////////////////////////////////////////////////////////////////////
     return Padding(
       padding: PaddingWidget.paddingTitle,
       child: Text(
@@ -184,9 +194,9 @@ class _DetailsPageState extends State<DetailsPage> {
   /* String showPassword(dynamic data, int index) {
     Map data = box.getAt(index);
     int pass = "${data['password']}".length;
-    String yldz = "*";
+    String str = "*";
     for (int i = 1; i < pass; i++) {
-      yldz = "$yldz*";
+      str = "$str*";
     }
-    return yldz;
+    return str;
   }*/
