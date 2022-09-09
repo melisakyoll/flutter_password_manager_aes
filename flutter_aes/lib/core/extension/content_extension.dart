@@ -20,6 +20,19 @@ extension ThemeExtension on BuildContext {
   ColorScheme get colors => theme.colorScheme;
 }
 
+extension PaddingExtensionOnly on BuildContext {
+  EdgeInsets get paddingOnlyTopAndBottom =>
+      EdgeInsets.only(top: normalValue, bottom: normalValue);
+  EdgeInsets get paddingLeftAndRight =>
+      EdgeInsets.only(left: normalValue, right: normalValue);
+  EdgeInsets get paddingLeftAndTop =>
+      EdgeInsets.only(left: normalValue, top: normalValue);
+  EdgeInsets get paddingOnlyTop => EdgeInsets.only(top: normalValue);
+  EdgeInsets get paddingOnlyBottom => EdgeInsets.only(bottom: normalValue);
+  EdgeInsets get paddingOnlyLeft => EdgeInsets.only(left: normalValue);
+  EdgeInsets get paddingOnlyRight => EdgeInsets.only(right: normalValue);
+}
+
 extension PaddingExtensionAll on BuildContext {
   EdgeInsets get paddingLow => EdgeInsets.all(lowValue);
   EdgeInsets get paddingNormal => EdgeInsets.all(normalValue);
@@ -44,4 +57,7 @@ extension PaddingExtensionSymetric on BuildContext {
       EdgeInsets.symmetric(horizontal: mediumValue);
   EdgeInsets get paddingHighHorizontal =>
       EdgeInsets.symmetric(horizontal: highValue);
+
+  EdgeInsets get paddingHorizontalVertical =>
+      EdgeInsets.symmetric(horizontal: normalValue, vertical: normalValue);
 }

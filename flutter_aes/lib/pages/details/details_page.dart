@@ -2,8 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_aes/core/constant/color_constant.dart';
-import 'package:flutter_aes/core/padding.dart';
-import 'package:flutter_aes/services/encyrpt_service.dart';
+import 'package:flutter_aes/core/extension/content_extension.dart';
+import 'package:flutter_aes/services/encrypt_service.dart';
 import 'package:flutter_aes/src/text_string.dart';
 import 'package:flutter_aes/style/text_style.dart';
 import 'package:flutter_aes/widgets/bottom_nav_bar_widget.dart';
@@ -64,7 +64,7 @@ class _DetailsPageState extends State<DetailsPage> {
     return Wrap(
       children: <Widget>[
         Padding(
-          padding: PaddingWidget.horzonVertical,
+          padding: context.paddingNormalHorizontal,
           child: Container(
             width: double.infinity,
             padding: const EdgeInsets.only(
@@ -177,7 +177,7 @@ class _DetailsPageState extends State<DetailsPage> {
   Padding titlePadding(String text) {
     ////////////////////////////////////////////////////////////////////////
     return Padding(
-      padding: PaddingWidget.paddingTitle,
+      padding: context.paddingLeftAndTop,
       child: Text(
         text,
         style: cTextStyle,

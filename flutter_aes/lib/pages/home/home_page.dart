@@ -2,9 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_aes/core/constant/color_constant.dart';
+import 'package:flutter_aes/core/extension/content_extension.dart';
 import 'package:flutter_aes/core/padding.dart';
 import 'package:flutter_aes/pages/details/details_page.dart';
-import 'package:flutter_aes/services/encyrpt_service.dart';
+import 'package:flutter_aes/services/encrypt_service.dart';
 import 'package:flutter_aes/src/text_string.dart';
 import 'package:flutter_aes/style/text_style.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -38,7 +39,7 @@ class _PasswordHomePageState extends State<PasswordHomePage> {
         ],
       ),
       body: Padding(
-        padding: PaddingWidget.horzonVertical,
+        padding: context.paddingHorizontalVertical,
         child: ValueListenableBuilder(
           valueListenable: box.listenable(),
           builder: (context, Box box, _) {

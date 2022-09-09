@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_aes/core/constant/color_constant.dart';
+import 'package:flutter_aes/core/extension/content_extension.dart';
 import 'package:flutter_aes/core/padding.dart';
 import 'package:flutter_aes/pages/generator/widget/password_generate.dart';
 import 'package:flutter_aes/src/text_string.dart';
@@ -42,7 +43,7 @@ class _RandomPasswordGeneratorState extends State<RandomPasswordGenerator> {
         child: _contextColumn(),
       ),
       bottomNavigationBar: Padding(
-        padding: PaddingWidget.bottomOnlyPadding,
+        padding: context.paddingOnlyBottom,
         child: SizedBox(
           height: 90,
           child: Row(
@@ -89,7 +90,7 @@ class _RandomPasswordGeneratorState extends State<RandomPasswordGenerator> {
 
   Padding _paddingAndText() {
     return Padding(
-      padding: PaddingWidget.randomHorizonVertical,
+      padding: context.paddingHorizontalVertical,
       child: TextFormField(
         maxLines: null,
         decoration: const InputDecoration(
@@ -254,7 +255,7 @@ class _RandomPasswordGeneratorState extends State<RandomPasswordGenerator> {
     return Column(
       children: [
         Padding(
-          padding: PaddingWidget.onlyVertical,
+          padding: context.paddingLowVertical,
           child: Text(TextWidget.passwordSettings,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0)),
         ),

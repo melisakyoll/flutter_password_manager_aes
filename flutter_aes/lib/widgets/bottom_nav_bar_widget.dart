@@ -2,10 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_aes/core/constant/color_constant.dart';
+import 'package:flutter_aes/core/extension/content_extension.dart';
 import 'package:flutter_aes/core/padding.dart';
 import 'package:flutter_aes/pages/home/home_page.dart';
 import 'package:flutter_aes/pages/generator/random_password_generate.dart';
-import 'package:flutter_aes/services/encyrpt_service.dart';
+import 'package:flutter_aes/services/encrypt_service.dart';
 import 'package:flutter_aes/src/text_string.dart';
 import 'package:flutter_aes/style/text_style.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -144,7 +145,7 @@ class _BottomNavigationBarWidState extends State<BottomNavigationBarWid> {
       builder: (context) => Padding(
         padding: MediaQuery.of(context).viewInsets,
         child: Container(
-          padding: PaddingWidget.allPadding,
+          padding: context.paddingNormal,
           child: Form(
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
@@ -235,7 +236,8 @@ class _BottomNavigationBarWidState extends State<BottomNavigationBarWid> {
       String password, String type, String email, BuildContext context) {
     return ElevatedButton(
         style: ButtonStyle(
-            padding: MaterialStateProperty.all(PaddingWidget.bottomNavPadding),
+            padding:
+                MaterialStateProperty.all(context.paddingHorizontalVertical),
             backgroundColor: MaterialStateProperty.all(
               primary,
             )),

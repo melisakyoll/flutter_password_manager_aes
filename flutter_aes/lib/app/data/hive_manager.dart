@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_aes/services/encyrpt_service.dart';
+import 'package:flutter_aes/services/encrypt_service.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class HiveData {
