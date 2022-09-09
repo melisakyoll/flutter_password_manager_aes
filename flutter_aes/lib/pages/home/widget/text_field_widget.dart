@@ -45,14 +45,14 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       controller: controller,
       textCapitalization: TextCapitalization.sentences,
       obscureText: obscure,
-      decoration: _inputDecoraiton(),
+      decoration: _inputDecoration(),
       style: Theme.of(context).textTheme.subtitle1,
       onChanged: onChanged,
       validator: _emptyValidator,
     );
   }
 
-  InputDecoration _inputDecoraiton() {
+  InputDecoration _inputDecoration() {
     return InputDecoration(
         icon: iconTheme,
         border: const OutlineInputBorder(),

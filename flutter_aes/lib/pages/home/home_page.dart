@@ -1,4 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api, library_prefixes, prefer_const_constructors, use_build_context_synchronously, unused_import
+// ignore_for_file: unused_import, library_private_types_in_public_api, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:flutter_aes/core/constant/color_constant.dart';
@@ -9,6 +9,7 @@ import 'package:flutter_aes/src/text_string.dart';
 import 'package:flutter_aes/style/text_style.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+// ignore: library_prefixes
 import 'package:flutter_aes/widgets/icon.dart' as CustomIcons;
 import 'package:path_provider/path_provider.dart' as path_provider;
 
@@ -31,10 +32,12 @@ class _PasswordHomePageState extends State<PasswordHomePage> {
         actions: [
           IconButton(
               onPressed: () {
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => DetailsPage()));
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const DetailsPage()));
               },
-              icon: Icon(Icons.density_large))
+              icon: const Icon(Icons.density_large))
         ],
       ),
       body: Padding(
@@ -56,7 +59,7 @@ class _PasswordHomePageState extends State<PasswordHomePage> {
   GridView gridViewBuild(Box<dynamic> box) {
     return GridView.builder(
       itemCount: box.values.length,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
       ),
       itemBuilder: (context, index) {
@@ -78,7 +81,7 @@ class _PasswordHomePageState extends State<PasswordHomePage> {
     return Card(
       elevation: 3,
       color: cardColor,
-      margin: EdgeInsets.all(
+      margin: const EdgeInsets.all(
         10.0,
       ),
       child: slidableWidget(index, data, context),
@@ -88,7 +91,7 @@ class _PasswordHomePageState extends State<PasswordHomePage> {
   Slidable slidableWidget(
       int index, Map<dynamic, dynamic> data, BuildContext context) {
     return Slidable(
-      actionPane: SlidableDrawerActionPane(),
+      actionPane: const SlidableDrawerActionPane(),
       actionExtentRatio: 0.25,
       secondaryActions: <Widget>[
         IconSlideAction(
@@ -100,7 +103,7 @@ class _PasswordHomePageState extends State<PasswordHomePage> {
         ),
       ],
       child: CustomIcons.icons[data['type'.trim()]] ??
-          Icon(
+          const Icon(
             Icons.lock,
             size: 32.0,
             color: iconColor,
