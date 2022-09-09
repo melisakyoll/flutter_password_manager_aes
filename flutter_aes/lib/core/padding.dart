@@ -2,7 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 
-class PaddingWidget extends Padding {
+/*class PaddingWidget extends Padding {
   static EdgeInsets horzonVertical =
       EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0);
 
@@ -31,3 +31,4 @@ class PaddingWidget extends Padding {
       required super.padding})
       : super(key: key);
 }
+*/
