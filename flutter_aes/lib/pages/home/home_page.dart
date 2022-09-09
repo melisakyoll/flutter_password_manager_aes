@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_aes/core/constant/color_constant.dart';
 import 'package:flutter_aes/core/extension/content_extension.dart';
-import 'package:flutter_aes/core/padding.dart';
 import 'package:flutter_aes/pages/details/details_page.dart';
 import 'package:flutter_aes/services/encrypt_service.dart';
 import 'package:flutter_aes/src/text_string.dart';

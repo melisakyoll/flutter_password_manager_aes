@@ -1,7 +1,5 @@
 // ignore_for_file: must_be_immutable
 
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_aes/src/text_string.dart';
 
