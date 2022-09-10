@@ -1,8 +1,10 @@
 // ignore_for_file: unused_import, library_private_types_in_public_api, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:flutter_aes/app/data/hive_manager.dart';
 import 'package:flutter_aes/core/constant/color_constant.dart';
 import 'package:flutter_aes/core/extension/content_extension.dart';
+import 'package:flutter_aes/core/init/theme/theme.dart';
 import 'package:flutter_aes/pages/details/details_page.dart';
 import 'package:flutter_aes/services/encrypt_service.dart';
 import 'package:flutter_aes/src/text_string.dart';
@@ -21,38 +23,45 @@ class PasswordHomePage extends StatefulWidget {
 }
 
 class _PasswordHomePageState extends State<PasswordHomePage> {
-  final Box box = Hive.box("password");
-  final EncryptService _encryptService = EncryptService();
+  final Box box = HiveData().box;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: whiteColor,
-      appBar: AppBar(
-        title: Text(TextWidget.appBarTitle, style: styleFontsWhite),
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const DetailsPage()));
-              },
-              icon: const Icon(Icons.density_large))
-        ],
+      appBar: _buildAppBar(context),
+      body: _buildBody(context),
+    );
+  }
+
+  Padding _buildBody(BuildContext context) {
+    return Padding(
+      padding: context.paddingHorizontalVertical,
+      child: ValueListenableBuilder(
+        valueListenable: HiveData().box.listenable(),
+        builder: (context, Box box, _) {
+          if (box.values.isEmpty) {
+            return Center(
+                child: Text(TextWidget.noPassText,
+                    style: ThemeApp.textTheme.headline4));
+          }
+          return gridViewBuild(box);
+        },
       ),
-      body: Padding(
-        padding: context.paddingHorizontalVertical,
-        child: ValueListenableBuilder(
-          valueListenable: box.listenable(),
-          builder: (context, Box box, _) {
-            if (box.values.isEmpty) {
-              return Center(
-                  child: Text(TextWidget.noPassText, style: styleFontsBlack));
-            }
-            return gridViewBuild(box);
-          },
-        ),
-      ),
+    );
+  }
+
+  AppBar _buildAppBar(BuildContext context) {
+    return AppBar(
+      title: Text(TextWidget.appBarTitle,
+          style: ThemeApp.primaryTextTheme.headline4),
+      actions: [
+        IconButton(
+            onPressed: () {
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => const DetailsPage()));
+            },
+            icon: const Icon(Icons.density_large))
+      ],
     );
   }
 
@@ -65,11 +74,9 @@ class _PasswordHomePageState extends State<PasswordHomePage> {
       itemBuilder: (context, index) {
         Map data = box.getAt(index);
         return InkWell(
+          /////////////////////////////////////////////////////////////////////////////////////
           onTap: () {
-            _encryptService.copyToClipboard(
-              data['password'],
-              context,
-            );
+            HiveData().onTap(data, context, index);
           },
           child: iconCard(index, data, context),
         );
@@ -81,9 +88,7 @@ class _PasswordHomePageState extends State<PasswordHomePage> {
     return Card(
       elevation: 3,
       color: cardColor,
-      margin: const EdgeInsets.all(
-        10.0,
-      ),
+      margin: context.paddingNormal,
       child: slidableWidget(index, data, context),
     );
   }
@@ -115,15 +120,18 @@ class _PasswordHomePageState extends State<PasswordHomePage> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Center(child: Text(TextWidget.deleteText, style: styleFonts)),
+        title: Center(
+            child: Text(TextWidget.deleteText,
+                style: ThemeApp.textTheme.subtitle2)),
         content: Text(TextWidget.isDelete),
         actions: [
           TextButton(
               child: Text(TextWidget.deleteText),
               onPressed: () async {
-                await box.deleteAt(index);
-                setState(() {});
-                Navigator.pop(context);
+                HiveData().deletePassword(index);
+                setState(() {
+                  Navigator.pop(context);
+                });
               })
         ],
       ),

@@ -1,12 +1,11 @@
 // ignore_for_file: library_prefixes, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_aes/app/data/hive_manager.dart';
 import 'package:flutter_aes/core/constant/color_constant.dart';
 import 'package:flutter_aes/core/extension/content_extension.dart';
 import 'package:flutter_aes/core/init/theme/theme.dart';
-import 'package:flutter_aes/services/encrypt_service.dart';
 import 'package:flutter_aes/src/text_string.dart';
-import 'package:flutter_aes/style/text_style.dart';
 import 'package:flutter_aes/widgets/bottom_nav_bar_widget.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_aes/widgets/icon.dart' as CustomIcons;
@@ -21,7 +20,6 @@ class DetailsPage extends StatefulWidget {
 class _DetailsPageState extends State<DetailsPage> {
   final Box box = Hive.box("password"); ///////////////////// Hive manager
 
-  final EncryptService _encryptService = EncryptService();
   @override
   Widget build(BuildContext context) {
     int index = box.values.length;
@@ -54,14 +52,14 @@ class _DetailsPageState extends State<DetailsPage> {
             const SizedBox(height: 50), //////////////////////
             serviceIcons(data),
             const SizedBox(height: 20), /////////////////////
-            wrapContext(data, context),
+            wrapContext(data, context, index),
           ],
         );
       },
     );
   }
 
-  Wrap wrapContext(Map<dynamic, dynamic> data, BuildContext context) {
+  Wrap wrapContext(Map<dynamic, dynamic> data, BuildContext context, index) {
     return Wrap(
       children: <Widget>[
         Padding(
@@ -81,14 +79,15 @@ class _DetailsPageState extends State<DetailsPage> {
                 ),
               ],
             ),
-            child: columnContext(data, context),
+            child: columnContext(data, context, index),
           ),
         ),
       ],
     );
   }
 
-  Column columnContext(Map<dynamic, dynamic> data, BuildContext context) {
+  Column columnContext(
+      Map<dynamic, dynamic> data, BuildContext context, index) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
@@ -103,7 +102,7 @@ class _DetailsPageState extends State<DetailsPage> {
         //PASSWORD
         titlePadding(
             TextWidget.passTextUpper), ////////////////////////////////////////
-        passwordCopy(data, context),
+        passwordCopy(data, context, index),
       ],
     );
   }
@@ -122,32 +121,28 @@ class _DetailsPageState extends State<DetailsPage> {
     );
   }
 
-  Row passwordCopy(Map<dynamic, dynamic> data, BuildContext context) {
+  Row passwordCopy(Map<dynamic, dynamic> data, BuildContext context, index) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Container(
-          margin: const EdgeInsets.only(left: 50),
+          margin: context.paddingOnlyLeft,
           child: Text(
             "${data['password']}", //////////////////////////////////////////
-            style: passTextStyle,
+            style: ThemeApp.textTheme.headline5,
           ),
         ),
-        passwordIconCopy(data, context),
+        passwordIconCopy(data, context, index),
       ],
     );
   }
 
   IconButton passwordIconCopy(
-      Map<dynamic, dynamic> data, BuildContext context) {
+      Map<dynamic, dynamic> data, BuildContext context, index) {
     return IconButton(
       tooltip: TextWidget.copyMessage,
       onPressed: () {
-        _encryptService.copyToClipboard(
-          ////////////////////////////////////////////
-          data['password'],
-          context,
-        );
+        HiveData().onTap(data, context, index);
       },
       icon: Icon(
         Icons.content_copy,

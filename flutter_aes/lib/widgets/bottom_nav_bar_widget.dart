@@ -1,15 +1,14 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, dead_code, unnecessary_null_comparison, prefer_if_null_operators
 
 import 'package:flutter/material.dart';
+import 'package:flutter_aes/app/data/hive_manager.dart';
 import 'package:flutter_aes/core/constant/color_constant.dart';
 import 'package:flutter_aes/core/extension/content_extension.dart';
 import 'package:flutter_aes/pages/home/home_page.dart';
 import 'package:flutter_aes/pages/generator/random_password_generate.dart';
-import 'package:flutter_aes/services/encrypt_service.dart';
 import 'package:flutter_aes/src/text_string.dart';
 import 'package:flutter_aes/style/text_style.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 class BottomNavigationBarWid extends StatefulWidget {
   const BottomNavigationBarWid({Key? key}) : super(key: key);
@@ -19,8 +18,6 @@ class BottomNavigationBarWid extends StatefulWidget {
 }
 
 class _BottomNavigationBarWidState extends State<BottomNavigationBarWid> {
-  final EncryptService _encryptService = EncryptService();
-
   int currentTab = 0;
   final List<Widget> bar = [
     const RandomPasswordGenerator(),
@@ -30,9 +27,9 @@ class _BottomNavigationBarWidState extends State<BottomNavigationBarWid> {
   Widget currentScreen = const PasswordHomePage();
   final PageStorageBucket pageStorageBucket = PageStorageBucket();
 
-  final servicecontroller = TextEditingController();
-  final passwordcontroller = TextEditingController();
-  final emailcontroller = TextEditingController();
+  final serviceController = TextEditingController();
+  final passwordController = TextEditingController();
+  final emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -159,7 +156,7 @@ class _BottomNavigationBarWidState extends State<BottomNavigationBarWid> {
                     height: 15.0,
                   ),
                   TextFormField(
-                    controller: servicecontroller,
+                    controller: serviceController,
                     textCapitalization: TextCapitalization.sentences,
                     decoration: InputDecoration(
                         icon: const Icon(FontAwesomeIcons.google),
@@ -178,7 +175,7 @@ class _BottomNavigationBarWidState extends State<BottomNavigationBarWid> {
                   ),
                   const SizedBox(height: 15.0),
                   TextFormField(
-                    controller: emailcontroller,
+                    controller: emailController,
                     textCapitalization: TextCapitalization.sentences,
                     decoration: InputDecoration(
                       icon: Icon(
@@ -200,7 +197,7 @@ class _BottomNavigationBarWidState extends State<BottomNavigationBarWid> {
                   ),
                   const SizedBox(height: 15.0),
                   TextFormField(
-                    controller: passwordcontroller,
+                    controller: passwordController,
                     textCapitalization: TextCapitalization.sentences,
                     obscureText: true,
                     decoration: InputDecoration(
@@ -221,7 +218,13 @@ class _BottomNavigationBarWidState extends State<BottomNavigationBarWid> {
                     },
                   ),
                   const SizedBox(height: 15.0),
-                  elevatedButtonWidget(password!, type!, email!, context)
+                  elevatedButtonWidget(
+                    //if(password!=null) password,
+                    (password != null ? password : "Null")!,
+                    (type != null ? type : 'Null')!,
+                    (email != null ? email : 'Null')!,
+                    context,
+                  ),
                 ],
               ),
             ),
@@ -234,23 +237,21 @@ class _BottomNavigationBarWidState extends State<BottomNavigationBarWid> {
   ElevatedButton elevatedButtonWidget(
       String password, String type, String email, BuildContext context) {
     return ElevatedButton(
-        style: ButtonStyle(
-            padding:
-                MaterialStateProperty.all(context.paddingHorizontalVertical),
-            backgroundColor: MaterialStateProperty.all(
-              primary,
-            )),
-        child: Text(TextWidget.saveText, style: bottomNavStyle),
-        onPressed: () {
-          // Encrypt
-          password = _encryptService.encrypt(password);
-          //hive
-          Box box = Hive.box('password');
-          //insert
-          var value = {'type': type, 'email': email, 'password': password};
-          box.add(value);
-          Navigator.pop(context);
-          setState(() {});
-        });
+      style: ButtonStyle(
+          padding: MaterialStateProperty.all(context.paddingHorizontalVertical),
+          backgroundColor: MaterialStateProperty.all(
+            primary,
+          )),
+      child: Text(TextWidget.saveText, style: bottomNavStyle),
+      onPressed: () {
+        HiveData().addPassword(password, type, email);
+
+        Navigator.pop(context);
+        setState(() {});
+      },
+    );
   }
+
+  Future<String> passwordNullCheck(String password) async =>
+      password != null ? password : 'Null';
 }
