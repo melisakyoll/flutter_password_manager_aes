@@ -39,11 +39,11 @@ class _DetailsPageState extends State<DetailsPage> {
           },
         ),
       ),
-      body: listviewBuilder(index, data),
+      body: listViewBuilder(index, data),
     );
   }
 
-  ListView listviewBuilder(int index, Map<dynamic, dynamic> data) {
+  ListView listViewBuilder(int index, Map<dynamic, dynamic> data) {
     return ListView.builder(
       itemCount: index,
       itemBuilder: (context, index) {
