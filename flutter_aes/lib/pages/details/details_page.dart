@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_aes/core/constant/color_constant.dart';
 import 'package:flutter_aes/core/extension/content_extension.dart';
+import 'package:flutter_aes/core/init/theme/theme.dart';
 import 'package:flutter_aes/services/encrypt_service.dart';
 import 'package:flutter_aes/src/text_string.dart';
 import 'package:flutter_aes/style/text_style.dart';
@@ -67,10 +68,7 @@ class _DetailsPageState extends State<DetailsPage> {
           padding: context.paddingNormalHorizontal,
           child: Container(
             width: double.infinity,
-            padding: const EdgeInsets.only(
-                ////////////////////////////////////////////
-                bottom:
-                    20), /////////////////////////////////////////////////////////////////
+            padding: context.paddingOnlyBottom,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
               color: whiteColor,
@@ -112,14 +110,12 @@ class _DetailsPageState extends State<DetailsPage> {
 
   Row subTitleRow(Map<dynamic, dynamic> data, String text) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Container(
-          margin: const EdgeInsets.only(
-              left: 50), //////////////////////////////////
+          margin: context.paddingLeftAndTop, //////////////////////////////////
           child: Text(
             text,
-            style: passTextStyle,
+            style: ThemeApp.textTheme.headline5,
           ),
         ),
       ],
@@ -180,7 +176,7 @@ class _DetailsPageState extends State<DetailsPage> {
       padding: context.paddingLeftAndTop,
       child: Text(
         text,
-        style: cTextStyle,
+        style: ThemeApp.textTheme.headline5,
       ),
     );
   }
