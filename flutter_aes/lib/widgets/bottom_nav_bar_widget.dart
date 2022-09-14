@@ -219,7 +219,6 @@ class _BottomNavigationBarWidState extends State<BottomNavigationBarWid> {
                   ),
                   const SizedBox(height: 15.0),
                   elevatedButtonWidget(
-                    //if(password!=null) password,
                     (password != null ? password : "Null")!,
                     (type != null ? type : 'Null')!,
                     (email != null ? email : 'Null')!,
