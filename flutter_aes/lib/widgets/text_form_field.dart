@@ -5,7 +5,7 @@ import 'package:flutter_aes/src/text_string.dart';
 
 class TextFieldWidget extends StatefulWidget {
   late bool obscure;
-  late IconData iconTheme;
+  late Icon iconTheme;
   late String labelText;
   late String hintText;
   late final Function(String) onChanged;
@@ -23,7 +23,7 @@ class TextFieldWidget extends StatefulWidget {
 class _TextFieldWidgetState extends State<TextFieldWidget> {
   TextEditingController controller = TextEditingController();
   late bool obscure;
-  late IconTheme iconTheme;
+  late Icon iconTheme;
   late String labelText;
   late String hintText;
   late final Function(String) onChanged;

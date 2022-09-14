@@ -6,6 +6,7 @@ import 'package:flutter_aes/core/constant/color_constant.dart';
 import 'package:flutter_aes/core/extension/content_extension.dart';
 import 'package:flutter_aes/pages/home/home_page.dart';
 import 'package:flutter_aes/pages/generator/random_password_generate.dart';
+import 'package:flutter_aes/pages/home/widget/text_field_widget.dart';
 import 'package:flutter_aes/src/text_string.dart';
 import 'package:flutter_aes/style/text_style.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -155,24 +156,12 @@ class _BottomNavigationBarWidState extends State<BottomNavigationBarWid> {
                   const SizedBox(
                     height: 15.0,
                   ),
-                  TextFormField(
-                    controller: serviceController,
-                    textCapitalization: TextCapitalization.sentences,
-                    decoration: InputDecoration(
-                        icon: const Icon(FontAwesomeIcons.google),
-                        border: const OutlineInputBorder(),
-                        labelText: TextWidget.serviceText,
-                        hintText: TextWidget.googleText),
-                    style: bottomNavStyle,
-                    onChanged: (value) => type = value,
-                    validator: (val) {
-                      if (val!.trim().isEmpty) {
-                        return TextWidget.enterValueText;
-                      } else {
-                        return null;
-                      }
-                    },
-                  ),
+                  TextFieldWidget(
+                      serviceController,
+                      Icons.abc,
+                      TextWidget.serviceText,
+                      TextWidget.googleText,
+                      (value) => type = value),
                   const SizedBox(height: 15.0),
                   TextFormField(
                     controller: emailController,
