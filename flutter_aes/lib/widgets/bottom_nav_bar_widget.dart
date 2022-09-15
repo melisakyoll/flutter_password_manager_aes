@@ -9,7 +9,6 @@ import 'package:flutter_aes/pages/generator/random_password_generate.dart';
 import 'package:flutter_aes/pages/home/widget/text_field_widget.dart';
 import 'package:flutter_aes/src/text_string.dart';
 import 'package:flutter_aes/style/text_style.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BottomNavigationBarWid extends StatefulWidget {
   const BottomNavigationBarWid({Key? key}) : super(key: key);

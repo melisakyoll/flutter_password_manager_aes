@@ -93,15 +93,12 @@ class _DetailsPageState extends State<DetailsPage> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         //TITLE
-        titlePadding(
-            TextWidget.serviceTextUpper), ////////////////////////////////////
+        titlePadding(TextWidget.serviceTextUpper),
         subTitleRow(data, "${data['type']}"),
-        titlePadding(
-            TextWidget.usernameTextUpper), ////////////////////////////////////
+        titlePadding(TextWidget.usernameTextUpper),
         subTitleRow(data, "${data['email']}"),
         //PASSWORD
-        titlePadding(
-            TextWidget.passTextUpper), ////////////////////////////////////////
+        titlePadding(TextWidget.passTextUpper),
         passwordCopy(data, context, index),
       ],
     );
@@ -111,7 +108,7 @@ class _DetailsPageState extends State<DetailsPage> {
     return Row(
       children: <Widget>[
         Container(
-          margin: context.paddingLeftAndTop, //////////////////////////////////
+          margin: context.paddingLeftAndTop,
           child: Text(
             text,
             style: ThemeApp.textTheme.headline5,
@@ -128,7 +125,7 @@ class _DetailsPageState extends State<DetailsPage> {
         Container(
           margin: context.paddingOnlyLeft,
           child: Text(
-            "${data['password']}", //////////////////////////////////////////
+            "${data['password']}",
             style: ThemeApp.textTheme.headline5,
           ),
         ),
@@ -166,7 +163,6 @@ class _DetailsPageState extends State<DetailsPage> {
   }
 
   Padding titlePadding(String text) {
-    ////////////////////////////////////////////////////////////////////////
     return Padding(
       padding: context.paddingLeftAndTop,
       child: Text(
