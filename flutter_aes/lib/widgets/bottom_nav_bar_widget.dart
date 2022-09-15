@@ -146,81 +146,48 @@ class _BottomNavigationBarWidState extends State<BottomNavigationBarWid> {
           child: Form(
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    TextWidget.upperText,
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  const SizedBox(
-                    height: 15.0,
-                  ),
-                  TextFieldWidget(
-                      serviceController,
-                      Icons.abc,
-                      TextWidget.serviceText,
-                      TextWidget.googleText,
-                      (value) => type = value),
-                  const SizedBox(height: 15.0),
-                  TextFormField(
-                    controller: emailController,
-                    textCapitalization: TextCapitalization.sentences,
-                    decoration: InputDecoration(
-                      icon: Icon(
-                        Icons.person,
-                        size: 26,
-                      ),
-                      border: OutlineInputBorder(),
-                      labelText: TextWidget.usernameText,
-                    ),
-                    style: bottomNavStyle,
-                    onChanged: (value) => email = value,
-                    validator: (val) {
-                      if (val!.trim().isEmpty) {
-                        return TextWidget.enterValueText;
-                      } else {
-                        return null;
-                      }
-                    },
-                  ),
-                  const SizedBox(height: 15.0),
-                  TextFormField(
-                    controller: passwordController,
-                    textCapitalization: TextCapitalization.sentences,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      icon: Icon(
-                        Icons.password,
-                      ),
-                      border: OutlineInputBorder(),
-                      labelText: TextWidget.labelText,
-                    ),
-                    style: bottomNavStyle,
-                    onChanged: (value) => password = value,
-                    validator: (val) {
-                      if (val!.trim().isEmpty) {
-                        return TextWidget.enterValueText;
-                      } else {
-                        return null;
-                      }
-                    },
-                  ),
-                  const SizedBox(height: 15.0),
-                  elevatedButtonWidget(
-                    (password != null ? password : "Null")!,
-                    (type != null ? type : 'Null')!,
-                    (email != null ? email : 'Null')!,
-                    context,
-                  ),
-                ],
-              ),
+              child: textFieldColumn(type, email, password, context),
             ),
           ),
         ),
       ),
     );
   }
+
+  Column textFieldColumn(
+      String? type, String? email, String? password, BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          TextWidget.upperText,
+          style: TextStyle(fontSize: 16),
+        ),
+        sizedBoxHeight(),
+        TextFieldWidget(serviceController, Icons.abc, TextWidget.serviceText,
+            TextWidget.googleText, (value) => type = value),
+        sizedBoxHeight(),
+        TextFieldWidget(emailController, Icons.person, TextWidget.usernameText,
+            TextWidget.usernameText, (value) => email = value),
+        sizedBoxHeight(),
+        TextFieldWidget(
+            passwordController,
+            Icons.password,
+            TextWidget.labelText,
+            TextWidget.labelText,
+            (value) => password = value),
+        sizedBoxHeight(),
+        elevatedButtonWidget(
+          (password != null ? password : "Null")!,
+          (type != null ? type : 'Null')!,
+          (email != null ? email : 'Null')!,
+          context,
+        ),
+      ],
+    );
+  }
+
+  SizedBox sizedBoxHeight() => const SizedBox(height: 15.0);
 
   ElevatedButton elevatedButtonWidget(
       String password, String type, String email, BuildContext context) {
